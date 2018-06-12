@@ -42,6 +42,7 @@ public class QueueTest {
 		// Falls letzte Position, Wert überschreiben
 		queue.enqueue(16);
 		
+		
 		// Mit int dequeue() wird die Zahl, die am längsten in der Queue ist
 		queue.dequeue();
 		queue.dequeue();
