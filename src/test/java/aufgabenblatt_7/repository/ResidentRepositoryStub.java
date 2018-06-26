@@ -9,19 +9,18 @@ import java.util.Locale;
 import aufgabenblatt_7.domain.Resident;
 
 public class ResidentRepositoryStub implements ResidentRepository {
-	private DateFormat format = new SimpleDateFormat("yyyy.MM.dd", Locale.GERMANY);
+	private DateFormat format; 
 	private Resident r1;
 	private Resident r2;
 	private Resident r3;
 	
 	public ResidentRepositoryStub() {
 		try {
+			format = new SimpleDateFormat("yyyy.MM.dd", Locale.GERMANY);
 			r1 = new Resident("vorname1", "nachname1", "strasse", "stadt", format.parse("2018.06.12"));
 			r2 = new Resident("vorname2", "nachname2", "strasse2", "stadt2", format.parse("2018.06.19"));
 			r3 = new Resident("vorname2", "nachname2", "strasse2", "stadt2", format.parse("2018.06.19"));
-		} catch(Exception exp) {
-			
-		}
+		} catch(Exception exp) { }
 	}
 
 	public List<Resident> getResidents() {

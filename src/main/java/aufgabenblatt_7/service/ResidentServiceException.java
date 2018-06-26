@@ -3,6 +3,7 @@ package aufgabenblatt_7.service;
 /**
  * @author Stefan Betermieux
  */
+@SuppressWarnings("serial")
 public class ResidentServiceException extends Exception {
 
   /**

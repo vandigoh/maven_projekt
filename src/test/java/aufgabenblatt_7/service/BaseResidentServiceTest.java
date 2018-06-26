@@ -14,27 +14,28 @@ import aufgabenblatt_7.domain.Resident;
 import aufgabenblatt_7.repository.ResidentRepositoryStub;
 
 public class BaseResidentServiceTest {
-
+	//
 	@Test
 	public void testFilteredResidents() throws ParseException {
-		BaseResidentService baseRes = new BaseResidentService();
+		BaseResidentService baseResService = new BaseResidentService();
 		DateFormat format = new SimpleDateFormat("yyyy.MM.dd", Locale.GERMANY);
 		Resident res = new Resident("vor*", "*", "*", "stadt", format.parse("2018.06.12"));
 		ResidentRepositoryStub resStub = new ResidentRepositoryStub();
-		baseRes.setResidentRepository(resStub);
+		baseResService.setResidentRepository(resStub);
 		List<Resident> listErgebnis = new ArrayList<Resident>();
 		listErgebnis.add(resStub.getResidents().get(0));
 		
-		// Erwartet der erster Eintrag der Liste aus Stub mit Format: siehe Zeile 22
-		assertEquals(listErgebnis,baseRes.getFilteredResidentsList(res));
+		// Beliebiger Resident mit Format res rausfiltern
+		// Erwartet der erste Eintrag der Liste aus Stub mit Format: siehe Zeile 22
+		assertEquals(listErgebnis,baseResService.getFilteredResidentsList(res));
 		
 		// Erwartet: leeres ArrayList
 		res = new Resident("vor*", "*", "*", "stadt", format.parse("2018.06.02"));
-		assertEquals(0, baseRes.getFilteredResidentsList(res).size());
+		assertEquals(0, baseResService.getFilteredResidentsList(res).size());
 		
 		// Test 3: Erwartet: dieselbe List, die im Stub erzeugt wurde
 		res = new Resident("*", "*", "*", "*", null);
-		assertEquals(resStub.getResidents(), baseRes.getFilteredResidentsList(res));
+		assertEquals(resStub.getResidents(), baseResService.getFilteredResidentsList(res));
 		
 	}
 	
